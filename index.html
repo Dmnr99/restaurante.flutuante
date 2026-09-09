@@ -224,34 +224,29 @@
   .menu-cta p{font-size:14.5px;color:rgba(246,240,227,0.75);}
   .menu-cta strong{color:var(--sand);}
 
-  /* ---------- AMBIENTE (reestruturado sem imagens) ---------- */
+  /* ---------- AMBIENTE GALERIA ---------- */
   .ambiente{background:var(--paper);}
-  .amb-grid{
+  .amb-gallery{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
   }
-  .amb-card{
+  .amb-gallery-item{
+    overflow:hidden;
+    border-radius:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
     background:var(--sand);
-    border:1px solid var(--line-dark);
-    border-radius:6px;
-    padding:32px 28px;
-    transition:transform .2s ease, border-color .2s ease;
+    aspect-ratio:4/3;
   }
-  .amb-card:hover{
-    transform:translateY(-4px);
-    border-color:var(--sun);
+  .amb-gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .3s ease;
   }
-  .amb-card h3{
-    font-family:'Fraunces',serif;
-    font-size:22px;
-    color:var(--water);
-    margin-bottom:12px;
-  }
-  .amb-card p{
-    font-size:15px;
-    line-height:1.65;
-    color:var(--ink-soft);
+  .amb-gallery-item:hover img{
+    transform:scale(1.05);
   }
 
   /* ---------- LOCALIZACAO ---------- */
@@ -276,6 +271,20 @@
   /* ---------- CONTATO ---------- */
   .contato{background:var(--paper);}
   .contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;}
+  
+  .notice-box{
+    background:#FFF3CD;
+    color:#856404;
+    border:1px solid #FFEEBA;
+    border-left:4px solid var(--sun);
+    padding:14px 18px;
+    border-radius:4px;
+    margin-bottom:24px;
+    font-size:14px;
+    line-height:1.5;
+    font-weight:600;
+  }
+
   .field{margin-bottom:20px;}
   .field label{display:block;font-size:13px;font-weight:600;margin-bottom:7px;color:var(--ink);}
   .field input,.field textarea,.field select{
@@ -335,7 +344,6 @@
     .hero-meta{border-left:none;border-top:1px solid rgba(246,240,227,0.2);padding-left:0;padding-top:22px;flex-direction:row;flex-wrap:wrap;}
     .sobre-grid, .local-grid, .contato-grid{grid-template-columns:1fr;gap:44px;}
     .facts{grid-template-columns:repeat(3,1fr);}
-    .amb-grid{grid-template-columns:repeat(2,1fr);}
     .foot-grid{grid-template-columns:1fr 1fr;}
   }
 
@@ -358,7 +366,6 @@
     .section{padding:70px 0;}
     .field-row{grid-template-columns:1fr;}
     .facts{grid-template-columns:1fr 1fr;}
-    .amb-grid{grid-template-columns:1fr;gap:16px;}
     .foot-grid{grid-template-columns:1fr;gap:28px;}
     .menu-card{padding:32px 18px;}
     .dish{flex-wrap:wrap;}
@@ -381,7 +388,7 @@
       <li><a href="#contato">Contato</a></li>
     </ul>
     <div class="nav-cta">
-      <a class="btn btn-whats" id="navWhats" href="#" target="_blank" rel="noopener">
+      <a class="btn btn-whats" id="navWhats" target="_blank" rel="noopener">
         <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.35.62 4.55 1.7 6.46L4 29l7.68-1.65a11.9 11.9 0 0 0 4.34.82h.01C22.63 28.17 28 22.77 28 16.15 28 9.53 22.64 3 16.02 3zm0 22.3h-.01a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.63.78.8-3.55-.23-.36a9.5 9.5 0 0 1-1.47-5.1c0-5.28 4.3-9.58 9.6-9.58 5.28 0 9.58 4.3 9.58 9.6 0 5.29-4.31 9.76-9.39 9.76zm5.24-7.15c-.29-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.14-.19.29-.75.93-.92 1.12-.17.19-.34.22-.63.07-.29-.14-1.21-.45-2.31-1.43-.85-.76-1.43-1.7-1.6-1.99-.17-.29-.02-.44.13-.59.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.65-1.57-.9-2.15-.24-.57-.48-.5-.65-.51h-.56c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.39s1.02 2.77 1.17 2.96c.14.19 2 3.05 4.83 4.28.68.29 1.2.47 1.62.6.68.22 1.3.19 1.79.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z"/></svg>
         <span class="btn-whats-label">WhatsApp</span>
       </a>
@@ -401,9 +408,9 @@
         <h1>Restaurante Flutuante</h1>
         <p class="hero-lede">Na beira do rio, em Teresina, com mesa farta de peixe, camarão e chapa — e o sol se pondo enquanto a comida chega.</p>
         <div class="hero-actions">
-          <a href="#" class="btn btn-whats" id="heroWhats" target="_blank" rel="noopener">
+          <a class="btn btn-whats" id="heroWhats" target="_blank" rel="noopener">
             <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.35.62 4.55 1.7 6.46L4 29l7.68-1.65a11.9 11.9 0 0 0 4.34.82h.01C22.63 28.17 28 22.77 28 16.15 28 9.53 22.64 3 16.02 3zm0 22.3h-.01a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.63.78.8-3.55-.23-.36a9.5 9.5 0 0 1-1.47-5.1c0-5.28 4.3-9.58 9.6-9.58 5.28 0 9.58 4.3 9.58 9.6 0 5.29-4.31 9.76-9.39 9.76zm5.24-7.15c-.29-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.14-.19.29-.75.93-.92 1.12-.17.19-.34.22-.63.07-.29-.14-1.21-.45-2.31-1.43-.85-.76-1.43-1.7-1.6-1.99-.17-.29-.02-.44.13-.59.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.65-1.57-.9-2.15-.24-.57-.48-.5-.65-.51h-.56c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.39s1.02 2.77 1.17 2.96c.14.19 2 3.05 4.83 4.28.68.29 1.2.47 1.62.6.68.22 1.3.19 1.79.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z"/></svg>
-            Reservar mesa
+            Fazer uma reserva
           </a>
           <a href="#cardapio" class="btn btn-ghost">Ver cardápio</a>
         </div>
@@ -460,8 +467,8 @@
         <div id="menuGroups"></div>
 
         <div class="menu-cta">
-          <p>Quer garantir mesa antes de vir? <strong>Fale com a gente pelo WhatsApp.</strong></p>
-          <a href="#" class="btn btn-whats" id="menuWhats" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          <p>Dúvidas sobre o cardápio? <strong>Fale com a gente pelo WhatsApp.</strong></p>
+          <a class="btn btn-whats" id="menuWhats" target="_blank" rel="noopener">Chamar no WhatsApp</a>
         </div>
       </div>
     </div>
@@ -474,31 +481,12 @@
         <h2>Deck sobre o rio, do almoço ao pôr do sol</h2>
         <p>Mesas ao ar livre, vista para a água e espaço pensado para grupo grande — de família com criança a mesa de amigos no fim de tarde.</p>
       </div>
-      <div class="amb-grid">
-        <div class="amb-card">
-          <h3>Deck sobre o rio</h3>
-          <p>Mesas posicionadas diretamente sobre a água para aproveitar a brisa refrescante do Poti com total conforto.</p>
-        </div>
-        <div class="amb-card">
-          <h3>Salão de frente pro rio</h3>
-          <p>Espaço coberto e aconchegante com vista panorâmica para a natureza e estrutura para grandes famílias.</p>
-        </div>
-        <div class="amb-card">
-          <h3>Fim de tarde no Poti</h3>
-          <p>O local ideal em Teresina para relaxar ao entardecer com cerveja trincando e petiscos selecionados.</p>
-        </div>
-        <div class="amb-card">
-          <h3>Peixe fresco do dia</h3>
-          <p>Ingredientes locais e frescos selecionados rigorosamente para garantir a máxima qualidade em cada receita.</p>
-        </div>
-        <div class="amb-card">
-          <h3>Direto da chapa</h3>
-          <p>Pratos servidos bem quentes, acompanhados do tradicional pirão, farofa e arroz temperado da casa.</p>
-        </div>
-        <div class="amb-card">
-          <h3>Atendimento acolhedor</h3>
-          <p>Equipe pronta para receber você e sua família com a hospitalidade calorosa e tradicional do Piauí.</p>
-        </div>
+      <div class="amb-gallery">
+        <div class="amb-gallery-item"><img src="imagens/foto1.jpg" alt="Ambiente do restaurante 1" loading="lazy"></div>
+        <div class="amb-gallery-item"><img src="imagens/foto2.jpg" alt="Ambiente do restaurante 2" loading="lazy"></div>
+        <div class="amb-gallery-item"><img src="imagens/foto3.jpg" alt="Ambiente do restaurante 3" loading="lazy"></div>
+        <div class="amb-gallery-item"><img src="imagens/foto4.jpg" alt="Ambiente do restaurante 4" loading="lazy"></div>
+        <div class="amb-gallery-item"><img src="imagens/foto5.jpg" alt="Ambiente do restaurante 5" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -539,7 +527,11 @@
       <div>
         <span class="kicker">Reserva</span>
         <h2 style="font-size:clamp(28px,3.4vw,38px);margin-bottom:16px;">Fale com a gente</h2>
-        <p style="color:var(--ink-soft);font-size:15.5px;line-height:1.6;margin-bottom:30px;">Preencha os dados abaixo — ao enviar, sua mensagem é montada automaticamente e aberta no WhatsApp, prontinha para mandar.</p>
+        <p style="color:var(--ink-soft);font-size:15.5px;line-height:1.6;margin-bottom:20px;">Preencha os dados abaixo — ao enviar, sua mensagem é montada automaticamente e aberta no WhatsApp, prontinha para mandar.</p>
+
+        <div class="notice-box">
+          IMPORTANTE: Aceitamos reservas somente de segunda a sexta-feira. Não realizamos reservas aos sábados, domingos e feriados.
+        </div>
 
         <form id="contatoForm">
           <div class="field-row">
@@ -548,23 +540,23 @@
               <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
             </div>
             <div class="field">
-              <label for="telefone">Seu telefone</label>
-              <input type="tel" id="telefone" name="telefone" placeholder="(86) 9XXXX-XXXX" required>
+              <label for="horario">Horário</label>
+              <input type="time" id="horario" name="horario">
             </div>
           </div>
           <div class="field-row">
             <div class="field">
               <label for="data">Data desejada</label>
-              <input type="date" id="data" name="data">
+              <input type="date" id="data" name="data" required>
             </div>
             <div class="field">
-              <label for="pessoas">Número de pessoas</label>
+              <label for="pessoas">Quantidade de pessoas</label>
               <input type="number" id="pessoas" name="pessoas" min="1" placeholder="Ex.: 4">
             </div>
           </div>
           <div class="field">
-            <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco mais: horário, ocasião, alguma preferência..."></textarea>
+            <label for="mensagem">Observações</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Alguma observação, preferência de mesa..."></textarea>
           </div>
           <button type="submit" class="btn btn-dark" style="width:100%;">Enviar reserva pelo WhatsApp</button>
           <p class="form-hint">Ao enviar, o WhatsApp abre em uma nova aba com sua mensagem já escrita — é só conferir e mandar.</p>
@@ -572,11 +564,11 @@
       </div>
 
       <div class="whats-card">
-        <h3>Prefere chamar direto?</h3>
-        <p>Fale com a gente agora mesmo pelo WhatsApp para reservar mesa, tirar dúvida sobre o cardápio ou perguntar sobre grupo grande.</p>
-        <a href="#" class="btn btn-whats" id="cardWhats" target="_blank" rel="noopener">
+        <h3>Entrar em contato com o restaurante</h3>
+        <p>Fale com a gente agora mesmo pelo WhatsApp para tirar dúvidas sobre o cardápio, saber sobre o espaço para grupo grande ou outras informações.</p>
+        <a class="btn btn-whats" id="cardWhats" target="_blank" rel="noopener">
           <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.35.62 4.55 1.7 6.46L4 29l7.68-1.65a11.9 11.9 0 0 0 4.34.82h.01C22.63 28.17 28 22.77 28 16.15 28 9.53 22.64 3 16.02 3zm0 22.3h-.01a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.63.78.8-3.55-.23-.36a9.5 9.5 0 0 1-1.47-5.1c0-5.28 4.3-9.58 9.6-9.58 5.28 0 9.58 4.3 9.58 9.6 0 5.29-4.31 9.76-9.39 9.76zm5.24-7.15c-.29-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.14-.19.29-.75.93-.92 1.12-.17.19-.34.22-.63.07-.29-.14-1.21-.45-2.31-1.43-.85-.76-1.43-1.7-1.6-1.99-.17-.29-.02-.44.13-.59.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.65-1.57-.9-2.15-.24-.57-.48-.5-.65-.51h-.56c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.39s1.02 2.77 1.17 2.96c.14.19 2 3.05 4.83 4.28.68.29 1.2.47 1.62.6.68.22 1.3.19 1.79.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z"/></svg>
-          Chamar agora
+          Entrar em contato
         </a>
         <div class="hours-mini">
           <div class="row"><span>Segunda a domingo</span><span>09h – 19h</span></div>
@@ -608,7 +600,7 @@
       <div class="foot-col">
         <h5>Contato</h5>
         <ul>
-          <li><a href="#" id="footWhats" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a id="footWhats" target="_blank" rel="noopener" style="cursor:pointer;">WhatsApp</a></li>
           <li><a href="#">Instagram</a></li>
           <li><a href="#">Facebook</a></li>
         </ul>
@@ -621,7 +613,7 @@
   </div>
 </footer>
 
-<a href="#" class="wa-float" id="floatWhats" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+<a class="wa-float" id="floatWhats" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
   <svg viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.35.62 4.55 1.7 6.46L4 29l7.68-1.65a11.9 11.9 0 0 0 4.34.82h.01C22.63 28.17 28 22.77 28 16.15 28 9.53 22.64 3 16.02 3zm0 22.3h-.01a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.63.78.8-3.55-.23-.36a9.5 9.5 0 0 1-1.47-5.1c0-5.28 4.3-9.58 9.6-9.58 5.28 0 9.58 4.3 9.58 9.6 0 5.29-4.31 9.76-9.39 9.76zm5.24-7.15c-.29-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.14-.19.29-.75.93-.92 1.12-.17.19-.34.22-.63.07-.29-.14-1.21-.45-2.31-1.43-.85-.76-1.43-1.7-1.6-1.99-.17-.29-.02-.44.13-.59.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.65-1.57-.9-2.15-.24-.57-.48-.5-.65-.51h-.56c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.39s1.02 2.77 1.17 2.96c.14.19 2 3.05 4.83 4.28.68.29 1.2.47 1.62.6.68.22 1.3.19 1.79.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z"/></svg>
 </a>
 
@@ -635,10 +627,18 @@ function whatsLink(message){
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-const defaultMsg = "Olá! Vim pelo site do Restaurante Flutuante e gostaria de reservar uma mesa.";
-["navWhats","heroWhats","menuWhats","cardWhats","footWhats","floatWhats"].forEach(id=>{
+// Mensagens específicas
+const msgContatoGeral = "Olá! Vim pelo site e gostaria de entrar em contato.";
+const msgReservaMesa = "Olá! Vim pelo site e gostaria de fazer uma reserva.";
+
+// Botão exclusivo de reserva
+const heroWhats = document.getElementById("heroWhats");
+if(heroWhats) heroWhats.href = whatsLink(msgReservaMesa);
+
+// Botões gerais de contato
+["navWhats","menuWhats","cardWhats","footWhats","floatWhats"].forEach(id=>{
   const el = document.getElementById(id);
-  if(el) el.href = whatsLink(defaultMsg);
+  if(el) el.href = whatsLink(msgContatoGeral);
 });
 
 /* =========================================================
@@ -891,21 +891,48 @@ function activateTab(id){
 }
 
 /* =========================================================
+   VALIDAÇÃO DA DATA DA RESERVA
+   ========================================================= */
+const dataInput = document.getElementById('data');
+
+dataInput.addEventListener('change', function(){
+  if(!this.value) return;
+  
+  const selectedDate = new Date(this.value + 'T00:00:00');
+  const day = selectedDate.getDay();
+
+  // 0 = Domingo, 6 = Sábado
+  if(day === 0 || day === 6){
+    alert("Não realizamos reservas aos sábados e domingos. Aceitamos reservas somente de segunda a sexta-feira.");
+    this.value = '';
+  }
+});
+
+/* =========================================================
    FORMULÁRIO -> WHATSAPP
    ========================================================= */
 document.getElementById('contatoForm').addEventListener('submit', function(e){
   e.preventDefault();
   const nome = document.getElementById('nome').value.trim();
-  const telefone = document.getElementById('telefone').value.trim();
-  const data = document.getElementById('data').value;
+  const dataVal = document.getElementById('data').value;
+  const horario = document.getElementById('horario').value;
   const pessoas = document.getElementById('pessoas').value.trim();
   const mensagem = document.getElementById('mensagem').value.trim();
 
-  let texto = `Olá! Meu nome é ${nome}, gostaria de reservar mesa no Flutuante.`;
-  if(pessoas) texto += `\nNúmero de pessoas: ${pessoas}`;
-  if(data) texto += `\nData desejada: ${data}`;
-  texto += `\nMeu telefone: ${telefone}`;
-  if(mensagem) texto += `\nMensagem: ${mensagem}`;
+  let dataFormatada = "";
+  if(dataVal){
+    const parts = dataVal.split('-');
+    if(parts.length === 3){
+      dataFormatada = `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+  }
+
+  const texto = `Olá! Gostaria de solicitar uma reserva.
+Nome: ${nome}
+Data: ${dataFormatada}
+Horário: ${horario}
+Quantidade de pessoas: ${pessoas}
+Observações: ${mensagem}`;
 
   window.open(whatsLink(texto), '_blank');
 });
